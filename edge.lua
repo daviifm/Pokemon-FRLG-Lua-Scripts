@@ -114,7 +114,7 @@ end
 function calcular_checksum(endereco_base, chave)
     local soma = 0
     
-    -- Vamos ler 12 blocos de 32 bits (total 48 bytes)
+    -- Ler 12 blocos de 32 bits (total 48 bytes)
     for i = 0, 11 do
         -- 1. Ler o bloco de 32 bits
         local valor_encriptado = emu:read32(endereco_base + 32 + (i * 4))

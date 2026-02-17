@@ -696,10 +696,10 @@ ability = {
 'Early Bird','Early Bird',       -- 203 Girafarig
 'Sturdy','Rock Head',            -- 204 Pineco
 'Sturdy','Sturdy',               -- 205 Forretress
-'Dunedance','Dunedance',         -- 206 Dunsparce (Serene Grace na Gen 3)
+'Serene Grace','Serene Grace',   -- 206 Dunsparce (Serene Grace na Gen 3)
 'Hyper Cutter','Sand Veil',      -- 207 Gligar
 'Sturdy','Rock Head',            -- 208 Steelix
-'Snivel','Snivel',               -- 209 Snubbull (Intimidate/Run Away na Gen 3)
+'Intimidate','Run Away',         -- 209 Snubbull (Intimidate/Run Away na Gen 3)
 'Intimidate','Run Away',         -- 210 Granbull
 'Swift Swim','Guts',             -- 211 Qwilfish
 'Swarm','Keen Eye',              -- 212 Scizor
@@ -714,7 +714,6 @@ ability = {
 'Oblivious','Thick Fat',         -- 221 Piloswine
 'Sturdy','Sturdy',               -- 222 Corsola
 'Hustle','Natural Cure',         -- 223 Remoraid
-'Hustle','Sniper',               -- 224 Octillery (Sniper é Gen 4, então era Suction Cups)
 'Suction Cups','Suction Cups',   -- 224 Octillery corrigido
 'Vital Spirit','Vital Spirit',   -- 225 Delibird
 'Swift Swim','Swift Swim',       -- 226 Mantine
@@ -772,7 +771,6 @@ ability = {
 'Guts','Guts',                   -- 276 Taillow
 'Guts','Guts',                   -- 277 Swellow
 'Keen Eye','Keen Eye',           -- 278 Wingull
-'Drizzle','Drizzle',             -- 279 Pelipper (Keen Eye na Gen 3!)
 'Keen Eye','Keen Eye',           -- 279 Pelipper corrigido
 'Synchronize','Inner Focus',     -- 280 Ralts
 'Synchronize','Inner Focus',     -- 281 Kirlia
@@ -795,11 +793,8 @@ ability = {
 'Huge Power','Thick Fat',        -- 298 Azurill
 'Sturdy','Sturdy',               -- 299 Nosepass
 'Cute Charm','Cute Charm',       -- 300 Skitty
-'Cute Charm','Normalize',        -- 301 Delcatty (Normalize é Gen 4, era Cute Charm)
 'Cute Charm','Cute Charm',       -- 301 Delcatty corrigido
-'Sableye','Sableye',             -- 302 Sableye (Keen Eye na Gen 3)
 'Keen Eye','Keen Eye',           -- 302 Sableye corrigido
-'Hyper Cutter','Hyper Cutter',   -- 303 Mawile (Intimidate na Gen 3)
 'Hyper Cutter','Intimidate',     -- 303 Mawile corrigido
 'Sturdy','Rock Head',            -- 304 Aron
 'Sturdy','Rock Head',            -- 305 Lairon
@@ -858,7 +853,6 @@ ability = {
 'Levitate','Levitate',           -- 358 Chimecho
 'Early Bird','Early Bird',       -- 359 Absol
 'Soundproof','Soundproof',       -- 360 Wynaut
-'Inner Focus','Ice Body',        -- 361 Snorunt (Ice Body é Gen 4, era Inner Focus)
 'Inner Focus','Inner Focus',     -- 361 Snorunt corrigido
 'Inner Focus','Oblivious',       -- 362 Glalie
 'Oblivious','Thick Fat',         -- 363 Spheal
@@ -878,7 +872,6 @@ ability = {
 'Clear Body','Clear Body',       -- 377 Regirock
 'Clear Body','Clear Body',       -- 378 Regice
 'Clear Body','Clear Body',       -- 379 Registeel
-'Latias','Latias',               -- 380 Latias (Levitate na Gen 3)
 'Levitate','Levitate',           -- 380 Latias corrigido
 'Levitate','Levitate',           -- 381 Latios
 'Drizzle','Drizzle',             -- 382 Kyogre
@@ -911,18 +904,6 @@ function exportar_pokemon(endereco)
     local otid = emu:read32(endereco + 4)
     local key = pid ~ otid -- Calcula a chave XOR
     local resto = pid % 24
-    
-    -- AQUI TEMOS UM DESAFIO DE LÓGICA:
-    -- A tabela_ordem[resto] nos dá uma lista, por exemplo: {1, 0, 2, 3}
-    -- Isso significa:
-    -- Posição 1 tem o bloco 1
-    -- Posição 2 tem o bloco 0
-    -- Posição 3 tem o bloco 2
-    -- Posição 4 tem o bloco 3
-    
-    -- Se queremos ler os IVs, precisamos achar onde está o bloco "3" (Misc).
-    -- Sua tentativa anterior foi: local offset_misc = tabela_ordem[resto][4]
-    -- Mas isso pegaria o bloco que está na quarta cadeira, e o Misc nem sempre senta lá!
     
     local offset_misc = 0
     -- Procura em qual das 4 posições está o bloco 3 (Misc)
@@ -980,8 +961,6 @@ function exportar_pokemon(endereco)
 
     --- Cálculo da Natureza (PID % 25)
     local nature_id = pid % 25
-    -- Como Lua começa listas no índice 1, se sua tabela for { [0] = "Hardy", ... }, use nature_id. 
-    -- Se for uma lista comum, use nature_id + 1.
 
     if especie_id > 0 then
         -- 1. Tradução da Natureza
@@ -1004,10 +983,9 @@ function exportar_pokemon(endereco)
         local n3 = move[move3] or "---"
         local n4 = move[move4] or "---"
 
-        -- IMPRESSÃO FINAL (Estilo Showdown/RigRed)
+        -- IMPRESSÃO FINAL (Estilo Showdown)
         console:log("----------------------------------")
-        -- Como não temos os nomes das espécies na lista acima, 
-        -- vou manter o ID por enquanto, ou você pode criar uma tabela 'pokemon'
+        -- Mantendo o ID até achar um jeito de colocar o nome do pokemon
         console:log("ESPÉCIE ID: " .. especie_id) 
         console:log("Ability: " .. nome_ability)
         console:log("Level: " .. nivel)
