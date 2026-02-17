@@ -3,123 +3,186 @@ Coleção de scripts em Lua desenvolvidos para Pokémon Fire Red e Leaf Green (G
 
 Esses scripts foram criados para uso em emuladores compatíveis com execução de scripts Lua (como BizHawk, mGBA com suporte, etc.), mas principalmente com foco no mGBA.
 
-📌 Funções Principais
-📤 exportall()
-🎯 O que faz
+Baseado nos scripts do Rigoroud Red.
+
+# 📌 Funções Principais
+
+---
+
+# 📤 `exportall()`
+
+## 🎯 O que faz
 
 Exporta todos os Pokémon da party (slots 1–6) para o console do emulador.
 
 Mostra:
 
-Espécie (ID)
+- Espécie (ID)
+    
+- Ability
+    
+- Level
+    
+- Nature
+    
+- Item
+    
+- IVs
+    
+- Golpes
+    
 
-Ability
+---
 
-Level
+## 🧪 Sintaxe correta
 
-Nature
-
-Item
-
-IVs
-
-Golpes
-
-🧪 Sintaxe correta
-exportall()
-
+`exportall()`
 
 Sem parâmetros.
 
-🩸 pre_damage(slot, valor)
-🎯 O que faz
+---
+
+# 🩸 `pre_damage(slot, valor)`
+
+## 🎯 O que faz
 
 Define manualmente o HP atual de um Pokémon da party.
 
-🧪 Sintaxe correta
-pre_damage(slot, novoHP)
+---
 
-📌 Exemplos
-pre_damage(1, 1)
-pre_damage(3, 25)
+## 🧪 Sintaxe correta
 
-⚠️ Regras
+`pre_damage(slot, novoHP)`
 
-slot → número entre 1 e 6
+### 📌 Exemplos
 
-valor → número maior que 0 e menor ou igual ao HP máximo
+`pre_damage(1, 1) pre_damage(3, 25)`
 
-⚔️ edge(slot)
-🎯 O que faz
+---
 
-Define a experiência do Pokémon para ficar a 1 ponto de EXP do próximo nível.
+## ⚠️ Regras
 
-🧪 Sintaxe correta
-edge(slot)
+- `slot` → número entre 1 e 6
+    
+- `valor` → número maior que 0 e menor ou igual ao HP máximo
+    
 
-📌 Exemplos
-edge(1)
-edge(4)
+---
 
-👥 edge_party()
-🎯 O que faz
+# ⚔️ `edge(slot)`
 
-Aplica edge() automaticamente em todos os Pokémon da party.
+## 🎯 O que faz
 
-🧪 Sintaxe correta
-edge_party()
+Define a experiência do Pokémon para ficar a **1 ponto de EXP do próximo nível**.
 
-☠️ aplicar_status(nome, slot)
-🎯 O que faz
+---
+
+## 🧪 Sintaxe correta
+
+`edge(slot)`
+
+### 📌 Exemplos
+
+`edge(1) edge(4)`
+
+---
+
+# 👥 `edge_party()`
+
+## 🎯 O que faz
+
+Aplica `edge()` automaticamente em todos os Pokémon da party.
+
+---
+
+## 🧪 Sintaxe correta
+
+`edge_party()`
+
+---
+
+# ☠️ `aplicar_status(nome, slot)`
+
+## 🎯 O que faz
 
 Aplica um status negativo manualmente no Pokémon escolhido.
 
-🧪 Sintaxe correta
-aplicar_status("NomeDoStatus", slot)
+---
 
-📌 Status válidos
+## 🧪 Sintaxe correta
 
-"Sleep"
+`aplicar_status("NomeDoStatus", slot)`
 
-"Poison"
+---
 
-"Burn"
+## 📌 Status válidos
 
-"Freeze"
+- `"Sleep"`
+    
+- `"Poison"`
+    
+- `"Burn"`
+    
+- `"Freeze"`
+    
+- `"Paralysis"`
+    
+- `"BadPoison"`
+    
 
-"Paralysis"
+---
 
-"BadPoison"
+## 📌 Exemplos
 
-📌 Exemplos
-aplicar_status("Burn", 1)
-aplicar_status("Poison", 3)
-aplicar_status("Sleep", 2)
+`aplicar_status("Burn", 1) aplicar_status("Poison", 3) aplicar_status("Sleep", 2)`
 
-⚠️ Possíveis erros
+---
 
-Status inválido → Erro: Não conheço o status
+## ⚠️ Possíveis erros
 
-Slot inválido → Número de slot inválido
+- Status inválido → `Erro: Não conheço o status`
+    
+- Slot inválido → `Número de slot inválido`
+    
 
-💤 Atalhos de Status
+---
 
-São versões simplificadas de aplicar_status.
+# 💤 Atalhos de Status
 
-😴 Sleep
-sleep(slot)
+São versões simplificadas de `aplicar_status`.
 
-☠️ Poison
-poison(slot)
+---
 
-🔥 Burn
-burn(slot)
+## 😴 Sleep
 
-❄️ Freeze
-freeze(slot)
+`sleep(slot)`
 
-⚡ Paralysis
-paralyze(slot)
+---
 
-🧪 Toxic
-badpoison(slot)
+## ☠️ Poison
+
+`poison(slot)`
+
+---
+
+## 🔥 Burn
+
+`burn(slot)`
+
+---
+
+## ❄️ Freeze
+
+`freeze(slot)`
+
+---
+
+## ⚡ Paralysis
+
+`paralyze(slot)`
+
+---
+
+## 🧪 Toxic
+
+`badpoison(slot)`
