@@ -56,8 +56,8 @@ Define manualmente o HP atual de um Pokémon da party.
 
 ### 📌 Exemplos
 
-`pre_damage(1, 1) pre_damage(3, 25)`
-
+`pre_damage(1, 1)`
+`pre_damage(3, 25)`
 ---
 
 ## ⚠️ Regras
@@ -83,7 +83,8 @@ Define a experiência do Pokémon para ficar a **1 ponto de EXP do próximo nív
 
 ### 📌 Exemplos
 
-`edge(1) edge(4)`
+`edge(1)`
+`edge(4)`
 
 ---
 
